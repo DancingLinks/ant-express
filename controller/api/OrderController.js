@@ -12,15 +12,15 @@ module.exports = {
     this.body = {result: {order: order, parcel: parcel, parcelPath: parcelPath}}
   },
   confirmed: function*() {
-    var order = yield Order.find({user: this.user, status: 'confirm'}).populate('parcel parcelPath')
-    this.body = {result: order}
+    var orders = yield Order.find({user: this.user, status: 'confirm'}).populate('parcel parcelPath')
+    this.body = {result: orders}
   },
   passing: function*() {
-    var order = yield Order.find({user: this.user, status: 'passing'}).populate('parcel parcelPath')
-    this.body = {result: order}
+    var orders = yield Order.find({user: this.user, status: 'passing'}).populate('parcel parcelPath')
+    this.body = {result: orders}
   },
   finished: function*() {
-    var order = yield Order.find({user: this.user, status: 'finish'}).populate('parcel parcelPath')
-    this.body = {result: order}
+    var orders = yield Order.find({user: this.user, status: 'finish'}).populate('parcel parcelPath')
+    this.body = {result: orders}
   }
 }
