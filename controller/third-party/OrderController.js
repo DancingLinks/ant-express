@@ -8,16 +8,27 @@ var getReqQRCode = function*() {
   return qrcode
 }
 
+var checkOrder = function*(order, token, status) {
+  this.assert(order, 400, 'invalid order')
+  this.assert(order.token == token, 400, 'invalid token')
+  this.assert(order.status == status, 400, 'invalid status')
+}
 
 module.exports = {
   pass: function*() {
     var qrcode = yield* getReqQRCode.call(this)
-    var result = yield Order.update({_id: qrcode.id, token: qrcode.token, status: 'confirm'}, {status: 'passing'})
-    this.body = {result: result}
+    var order = yield Order.findOne({_id: qrcode.id})
+    yield* checkOrder.call(this, order, qrcode.token, 'confirm')
+    order.status = 'passing'
+    yield order.save()
+    this.body = {result: order}
   },
   finish: function*() {
     var qrcode = yield* getReqQRCode.call(this)
-    var result = yield Order.update({_id: qrcode.id, token: qrcode.token, status: 'passing'}, {status: 'finish'})
-    this.body = {result: result}
+    var order = yield Order.findOne({_id: qrcode.id})
+    yield* checkOrder.call(this, order, qrcode.token, 'passing')
+    order.status = 'finish'
+    yield order.save()
+    this.body = {result: order}
   }
 }
