@@ -4,17 +4,17 @@ var Schema = mongoose.Schema
 
 var parcelSchema = new Schema({
   // sender
-  senderName: {type: String, required: true},
-  senderPhone: {type: String, required: true},
-  senderAddress: {type: String, required: true},
+  senderName: {type: String, required: true, select: false},
+  senderPhone: {type: String, required: true, select: false},
+  senderAddress: {type: String, required: true, select: false},
   senderDistrict: String,
   senderCity: String,
   senderProvince: String,
 
   // receiver
-  receiverName: {type: String, required: true},
-  receiverPhone: {type: String, required: true},
-  receiverAddress: {type: String, required: true},
+  receiverName: {type: String, required: true, select: false},
+  receiverPhone: {type: String, required: true, select: false},
+  receiverAddress: {type: String, required: true, select: false},
   receiverDistrict: String,
   receiverCity: String,
   receiverProvince: String,
