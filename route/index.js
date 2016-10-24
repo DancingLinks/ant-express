@@ -10,7 +10,9 @@ router.get('/', function*(next) {
   });
 });
 
-router.post('parcel/add', require('../controller/ParcelController').add)
+router.post('third-party/parcel/add', require('../controller/third-party/ParcelController').add)
+router.post('third-party/order/pass', require('../controller/third-party/OrderController').pass)
+router.post('third-party/order/finish', require('../controller/third-party/OrderController').finish)
 
 router.get('parcel/pass', isAuth, require('../controller/ParcelController').pass)
 router.get('parcel/path/search', isAuth, require('../controller/ParcelController').search)
