@@ -1,10 +1,20 @@
-var ParcelController = require('../controller/wechat/ParcelController')
+var OrderController = require('../controller/wechat/OrderController')
 
 var mapping = [
   {
     Event: 'CLICK',
-    EventKey: 'PASS_PARCEL',
-    action: ParcelController.pass
+    EventKey: 'ORDER_CONFIRM',
+    action: OrderController.confirmed
+  },
+  {
+    Event: 'CLICK',
+    EventKey: 'ORDER_PASSING',
+    action: OrderController.passing
+  },
+  {
+    Event: 'CLICK',
+    EventKey: 'ORDER_FINISH',
+    action: OrderController.finished
   }
 ]
 

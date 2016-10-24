@@ -2,7 +2,7 @@
 <html>
 <head>
   <% include ../head/default.ejs %>
-  <title>开始传递 | 蚂蚁速递</title>
+  <title>传递包裹 | 蚂蚁速递</title>
 </head>
 <body>
 <% include ../header/default.ejs %>
@@ -10,17 +10,19 @@
   <table class="am-table am-table-bordered am-table-radius">
     <thead>
     <tr>
-      <th>包裹</th>
+      <th>物品</th>
+      <th>重量</th>
       <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <% parcelPaths.forEach(function (parcelPath) { %>
     <tr>
-      <td>重量: <%= parcelPath.parcel.weight %> <%= parcelPath.parcel.unit %></td>
+      <td><%= parcelPath.parcel.content %></td>
+      <td><%= parcelPath.parcel.weight %> <%= parcelPath.parcel.unit %></td>
       <td>
         <a href="/parcel/path/confirm?id=<%= parcelPath._id %>" class="am-btn am-btn-secondary am-btn-xs"
-           onclick="return confirmPass()">传递</a>
+           onclick="return confirmPass()">接单</a>
       </td>
     </tr>
     <% }) %>
