@@ -1,4 +1,5 @@
 var Order = require('../../model/order')
+var ParcelPath = require('../../model/parcelPath')
 
 var getReqQRCode = function*() {
   var qrcode = this.request.body
@@ -29,6 +30,11 @@ module.exports = {
     yield* checkOrder.call(this, order, qrcode.token, 'passing')
     order.status = 'finish'
     yield order.save()
+    var parcelPath = yield ParcelPath.findOne({_id: order.parcelPath})
+    if (parcelPath) {
+      parcelPath.status = 'finish'
+      yield parcelPath.save()
+    }
     this.body = {result: order}
   }
 }
