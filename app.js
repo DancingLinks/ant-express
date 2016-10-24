@@ -54,9 +54,11 @@ app.use(require('./middleware/user'))
 // routes definition
 var index = require('./route/index')
 var user = require('./route/user')
+var wechat = require('./route/wechat')
 var api = require('./route/api')
 koa.use('/', index.routes(), index.allowedMethods());
 koa.use('/user', user.routes(), user.allowedMethods());
+koa.use('/wechat', wechat.routes(), wechat.allowedMethods());
 koa.use('/api', api.routes(), api.allowedMethods())
 // mount root routes  
 app.use(koa.routes());
