@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>开始传递 | 蚂蚁速递</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <table class="am-table am-table-bordered am-table-radius">
+    <thead>
+    <tr>
+      <th>包裹</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% parcelPaths.forEach(function (parcelPath) { %>
+    <tr>
+      <td>重量: <%= parcelPath.parcel.weight %> <%= parcelPath.parcel.unit %></td>
+      <td>
+        <a href="/parcel/path/confirm?id=<%= parcelPath._id %>" class="am-btn am-btn-secondary am-btn-xs"
+           onclick="return confirmPass()">传递</a>
+      </td>
+    </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<% include ../script/default.ejs %>
+<script>
+  function confirmPass() {
+    return confirm('确认传递这个包裹?')
+  }
+</script>
+</body>
+</html>
