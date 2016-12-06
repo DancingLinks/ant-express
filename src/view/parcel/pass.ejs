@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>传递包裹 | 蚂蚁速递</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <form class="am-form" action="/parcel/path/search" method="get">
+    <fieldset>
+      <legend>请输入行程</legend>
+      <div class="am-form-group">
+        <label for="start">起点</label>
+        <input type="text" name="start" id="start" required/>
+      </div>
+      <div class="am-form-group">
+        <label for="end">终点</label>
+        <input type="text" name="end" id="end" required/>
+      </div>
+      <div>
+        <button type="submit" class="am-btn am-btn-primary am-btn-lg am-center">提交</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<% include ../script/default.ejs %>
+<script>
+  $(function () {
+    $('.am-form').validator({
+      onValid: function (validity) {
+        $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+      },
+
+      onInValid: function (validity) {
+        var $field = $(validity.field);
+        var $group = $field.closest('.am-form-group');
+        var $alert = $group.find('.am-alert');
+        // 使用自定义的提示信息 或 插件内置的提示信息
+        var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+        if (!$alert.length) {
+          $alert = $('<div class="am-alert am-alert-danger"></div>').hide().appendTo($group);
+        }
+        $alert.html(msg).show();
+      }
+    });
+  });
+</script>
+</body>
+</html>
