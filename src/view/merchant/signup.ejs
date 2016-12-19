@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>电商接入 | 蚂蚁相传</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <form class="am-form" style="margin: auto; max-width: 480px;" action="/merchant/signup" method="post">
+    <fieldset>
+      <legend>电商接入</legend>
+      <div class="am-form-group">
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" minlength="4" required/>
+      </div>
+      <div class="am-form-group">
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" minlength="6" required/>
+      </div>
+      <div class="am-form-group">
+        <label for="password-confirm">确认密码</label>
+        <input type="password" id="password-confirm" minlength="6" data-equal-to="#password"
+               data-validation-message="两次密码输入请保持一致" required/>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+      <div class="am-form-group">
+        <label for="company">公司名</label>
+        <input type="text" name="company" id="company" required/>
+      </div>
+      <div class="am-form-group">
+        <label for="web">网址</label>
+        <input type="text" name="web" id="web" required/>
+      </div>
+      <div style="text-align: center;">
+        <button type="submit" class="am-btn am-btn-primary">注册</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<% include ../script/default.ejs %>
+<script>
+  $(function () {
+    $('.am-form').validator({
+      onValid: function (validity) {
+        $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+      },
+
+      onInValid: function (validity) {
+        var $field = $(validity.field);
+        var $group = $field.closest('.am-form-group');
+        var $alert = $group.find('.am-alert');
+        // 使用自定义的提示信息 或 插件内置的提示信息
+        var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+        if (!$alert.length) {
+          $alert = $('<div class="am-alert am-alert-danger"></div>').hide().appendTo($group);
+        }
+        $alert.html(msg).show();
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,8 +1,11 @@
 var router = require('koa-router')();
-var UserController = require('../controller/UserController')
+var MerchantController = require('../controller/MerchantController')
 
-router.get('/', UserController.index);
-router.get('/auth', UserController.auth)
-router.get('/oauth', UserController.oauth)
+router.get('/', MerchantController.index)
+router.get('/login', MerchantController.login)
+router.post('/login', MerchantController.loginPost)
+router.get('/signup', MerchantController.signup)
+router.post('/signup', MerchantController.signupPost)
+router.get('/info', MerchantController.info)
 
 module.exports = router;

@@ -1,16 +1,12 @@
-var User = require('../model/user')
+var Merchant = require('../model/merchant')
 var debug = require('../service/debug')
 
 module.exports = function*(next) {
-  if (this.path === '/wechat') {
-    yield next
-    return
-  }
-  if (this.session.user_id) {
-    this.user = yield User.findOne({_id: this.session.user_id})
+  if (this.session.merchant_id) {
+    this.merchant = yield Merchant.findOne({_id: this.session.merchant_id})
   } else {
-    this.user = null
+    this.merchant = null
   }
-  debug('user:', this.user)
+  debug('merchant:', this.merchant)
   yield next
 }

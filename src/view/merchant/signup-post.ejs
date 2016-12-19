@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>电商接入 | 蚂蚁相传</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <form class="am-form" style="margin: auto; max-width: 480px;">
+    <fieldset>
+      <legend>电商接入</legend>
+      <% if (success) { %>
+      <p>注册成功，请跳转登录</p>
+      <div style="text-align: center;">
+        <a href="/merchant/login" class="am-btn am-btn-primary">登录</a>
+      </div>
+      <% }else{ %>
+      <p>注册失败，请重新注册</p>
+      <div style="text-align: center;">
+        <a href="/merchant/signup" class="am-btn am-btn-primary">注册</a>
+      </div>
+      <% } %>
+    </fieldset>
+  </form>
+</div>
+<% include ../script/default.ejs %>
+</body>
+</html>

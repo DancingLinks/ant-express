@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>电商信息 | 蚂蚁相传</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">电商信息</strong></div>
+  </div>
+  <form class="am-form am-form-horizontal">
+    <div class="am-form-group am-form-icon am-form-feedback">
+      <label for="username" class="am-u-sm-2 am-form-label">用户名</label>
+      <div class="am-u-sm-10">
+        <input type="text" id="username" class="am-form-field" value="<%= merchant.username %>" readonly>
+      </div>
+    </div>
+    <div class="am-form-group am-form-icon am-form-feedback">
+      <label for="appid" class="am-u-sm-2 am-form-label">APPID</label>
+      <div class="am-u-sm-10">
+        <input type="text" id="appid" class="am-form-field" value="<%= merchant.appid %>" readonly>
+      </div>
+    </div>
+    <div class="am-form-group am-form-icon am-form-feedback">
+      <label for="appkey" class="am-u-sm-2 am-form-label">APPKEY</label>
+      <div class="am-u-sm-10">
+        <input type="text" id="appkey" class="am-form-field" value="<%= merchant.appkey %>" readonly>
+      </div>
+    </div>
+    <div class="am-form-group am-form-icon am-form-feedback">
+      <label for="company" class="am-u-sm-2 am-form-label">公司名</label>
+      <div class="am-u-sm-10">
+        <input type="text" id="company" class="am-form-field" value="<%= merchant.company %>" readonly>
+      </div>
+    </div>
+    <div class="am-form-group am-form-icon am-form-feedback">
+      <label for="web" class="am-u-sm-2 am-form-label">网址</label>
+      <div class="am-u-sm-10">
+        <input type="text" id="web" class="am-form-field" value="<%= merchant.web %>" readonly>
+      </div>
+    </div>
+  </form>
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">接口统计</strong></div>
+  </div>
+  <div style="padding: 0 26px 26px 26px;">
+    <canvas id="api-chart" style="width: 100%; height: 280px;"></canvas>
+  </div>
+</div>
+<% include ../script/default.ejs %>
+<script>
+  var ctx = document.getElementById("api-chart")
+  var apiChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["20161202", "20161203", "20161204", "20161205", "20161206", "20161207", "20161208"],
+      datasets: [
+        {
+          label: "新增包裹",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: [65, 59, 80, 81, 56, 55, 40],
+          spanGaps: false
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>

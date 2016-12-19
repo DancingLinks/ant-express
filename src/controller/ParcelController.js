@@ -10,8 +10,8 @@ module.exports = {
     this.assert(data.start, 400, 'require start')
     this.assert(data.end, 400, 'require end')
     var parcelPaths = yield ParcelPath.find({
-      start: data.start,
-      end: data.end,
+      start: {$regex: data.start},
+      end: {$regex: data.end},
       status: 'wait'
     }).populate('parcel')
     yield this.render('parcel/search', {

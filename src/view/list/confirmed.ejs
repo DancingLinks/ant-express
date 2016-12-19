@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <% include ../head/default.ejs %>
+  <title>已接单的包裹 | 蚂蚁相传</title>
+</head>
+<body>
+<% include ../header/default.ejs %>
+<div class="am-container">
+  <table class="am-table am-table-bordered am-table-radius">
+    <thead>
+    <tr>
+      <th>物品</th>
+      <th>重量</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% result.forEach(function (item) { %>
+    <tr>
+      <td>1</td>
+      <td>
+        <a href="/parcel/path/confirm?id=1" class="am-btn am-btn-secondary am-btn-xs">查看</a>
+      </td>
+    </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
+<% include ../script/default.ejs %>
+</body>
+</html>

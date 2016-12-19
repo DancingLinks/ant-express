@@ -8,6 +8,6 @@ module.exports = {
     var openid = this.weixin.FromUserName
     yield redisCo.set(key, openid)
     yield redisCo.expire(key, 600)
-    return `http://ant-express.picfood.cn/user/auth?token=${token}&redirect=${redirectUrl}`
+    return `https://ant-express.picfood.cn/user/auth?token=${token}&redirect=${redirectUrl}`
   }
 }

@@ -15,6 +15,13 @@ var mapping = [
     Event: 'CLICK',
     EventKey: 'ORDER_FINISH',
     action: OrderController.finished
+  },
+  {
+    Event: 'subscribe',
+    EventKey: '',
+    action: function*() {
+      this.body = '「蚂蚁相传」汇聚一切微小的力量'
+    }
   }
 ]
 

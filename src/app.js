@@ -56,10 +56,14 @@ var index = require('./route/index')
 var user = require('./route/user')
 var wechat = require('./route/wechat')
 var api = require('./route/api')
-koa.use('/', index.routes(), index.allowedMethods());
-koa.use('/user', user.routes(), user.allowedMethods());
-koa.use('/wechat', wechat.routes(), wechat.allowedMethods());
+var merchant = require('./route/merchant')
+var thirdParty = require('./route/thirdParty')
+koa.use('/', index.routes(), index.allowedMethods())
+koa.use('/user', user.routes(), user.allowedMethods())
+koa.use('/wechat', wechat.routes(), wechat.allowedMethods())
 koa.use('/api', api.routes(), api.allowedMethods())
+koa.use('/merchant', require('./middleware/merchant'), merchant.routes(), merchant.allowedMethods())
+koa.use('/third-party', thirdParty.routes(), thirdParty.allowedMethods())
 // mount root routes  
 app.use(koa.routes());
 
