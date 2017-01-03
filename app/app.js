@@ -61,7 +61,10 @@ var thirdParty = require('./route/thirdParty')
 koa.use('/', index.routes(), index.allowedMethods())
 koa.use('/user', user.routes(), user.allowedMethods())
 koa.use('/wechat', wechat.routes(), wechat.allowedMethods())
-koa.use('/api', api.routes(), api.allowedMethods())
+koa.use('/api',
+  require('kcors')({origin: 'http://ant.sw77.live', credentials: true}),
+  api.routes(), api.allowedMethods()
+)
 koa.use('/merchant', require('./middleware/merchant'), merchant.routes(), merchant.allowedMethods())
 koa.use('/third-party', thirdParty.routes(), thirdParty.allowedMethods())
 // mount root routes  

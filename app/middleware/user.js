@@ -11,6 +11,5 @@ module.exports = function*(next) {
   } else {
     this.user = null
   }
-  debug('user:', this.user)
   yield next
 }

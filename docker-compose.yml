@@ -1,0 +1,20 @@
+version: '2'
+services:
+  web:
+    build: ./app
+    ports:
+      - "127.0.0.1:3000:3000"
+    external_links:
+      - redis:redis
+      - mongodb:mongodb
+    depends_on:
+      - auth-service
+    restart: on-failure
+  auth-service:
+    build: ./service/auth
+    ports:
+      - "127.0.0.1:9090:9090"
+    external_links:
+      - redis:redis
+    restart: on-failure
+
