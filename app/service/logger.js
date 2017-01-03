@@ -1,11 +1,17 @@
 var Message = require('../model/message')
 
+var thrift = require('thrift')
+var LoggerService = require('./gen-nodejs/Logger')
+var connection = thrift.createConnection('logger-service', 9090, {
+  transport: thrift.TBufferedTransport,
+  protocol: thrift.TBinaryProtocol
+})
+var client = thrift.createClient(LoggerService, connection)
+
 module.exports = {
   requestMessage: function*() {
-    var message = new Message(this.weixin)
-    message.save((err)=> {
-      if (err) console.error(new Date(), err)
-    })
+    var msg = JSON.stringify(this.weixin)
+    yield client.message(msg)
   },
   
   replyMessage: function*() {
@@ -30,10 +36,8 @@ module.exports = {
     info.CreateTime = new Date().getTime()
     info.ToUserName = toUsername
     info.FromUserName = fromUsername
-    
-    var message = new Message(info)
-    message.save((err)=> {
-      if (err) console.error(new Date(), err)
-    })
+
+    var msg = JSON.stringify(info)
+    yield client.message(msg)
   }
 }

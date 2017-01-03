@@ -9,6 +9,7 @@ services:
       - mongodb:mongodb
     depends_on:
       - auth-service
+      - logger-service
     restart: on-failure
   auth-service:
     build: ./service/auth
@@ -17,4 +18,8 @@ services:
     external_links:
       - redis:redis
     restart: on-failure
-
+  logger-service:
+    build: ./service/logger
+    external_links:
+      - mongodb:mongodb
+    restart: on-failure
