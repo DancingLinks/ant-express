@@ -8,7 +8,6 @@ var client = thrift.createClient(AuthService, connection)
 
 module.exports = {
   generateUrl: function*(redirectUrl) {
-    console.log('weixin:', )
     var openid = this.weixin ? this.weixin.FromUserName : 'ERROR'
     return yield client.generateUrl(redirectUrl, openid)
   }
